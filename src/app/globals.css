@@ -1,0 +1,97 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 97%; /* Gray 8 Lt - #F7F7F7 */
+    --foreground: 240 10% 3.9%; /* Black - #1B1B1B */
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 97%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 25 97% 64%; /* Orange - #FC9F4D */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 90%; /* Gray 6 Lt - #E8E8E8 */
+    --secondary-foreground: 240 10% 3.9%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 34 91% 95%; /* Accent I - #FEF3E1 */
+    --accent-foreground: 240 10% 3.9%;
+    --destructive: 0 78% 63%; /* Error - #E55757 */
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 88%; /* Gray 5 Med - #E1E1E1 */
+    --input: 0 0% 88%;
+    --ring: 25 97% 64%;
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 15%; /* Gray 1 Dark - #252525 */
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-muted-foreground: 0 0% 60%;
+    --sidebar-active-background: 0 0% 22%; /* Gray 2 Dark - #373737 */
+    --sidebar-active-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 22%;
+
+    --chart-1: 221 73% 58%; /* Info - #3B5CCD */
+    --chart-2: 168 96% 38%; /* Success - #04B992 */
+    --chart-3: 45 98% 68%; /* Warning - #FDD45D */
+    --chart-4: 151 33% 48%; /* Accent IV - #7EBDBD */
+    --chart-5: 280 80% 60%;
+  }
+
+  .dark {
+    --background: 0 0% 10.6%; /* Black - #1B1B1B */
+    --foreground: 0 0% 97%; /* White - #F7F7F7 */
+    --card: 0 0% 14.5%; /* Gray 1 Dark - #252525 */
+    --card-foreground: 0 0% 97%;
+    --popover: 0 0% 10.6%;
+    --popover-foreground: 0 0% 97%;
+    --primary: 25 97% 64%; /* Orange - #FC9F4D */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 22%; /* Gray 2 Dark - #373737 */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 22%;
+    --muted-foreground: 0 0% 68%; /* Gray 4 Med - #AFAFAF */
+    --accent: 34 91% 95%;
+    --accent-foreground: 240 10% 3.9%;
+    --destructive: 0 78% 63%; /* Error - #E55757 */
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 22%;
+    --input: 0 0% 22%;
+    --ring: 25 97% 64%;
+    
+    --sidebar-background: 0 0% 10.6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-muted-foreground: 0 0% 68%;
+    --sidebar-active-background: 0 0% 14.5%;
+    --sidebar-active-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 14.5%;
+
+    --chart-1: 221 73% 58%;
+    --chart-2: 168 96% 38%;
+    --chart-3: 45 98% 68%;
+    --chart-4: 151 33% 48%;
+    --chart-5: 280 80% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .day-available:not([aria-selected]):not(.day-outside) {
+    background-color: hsl(var(--chart-1) / 0.2);
+    color: hsl(var(--foreground));
+  }
+  .day-available:hover:not([aria-selected]) {
+      background-color: hsl(var(--chart-1) / 0.3);
+  }
+}

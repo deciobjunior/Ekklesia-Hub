@@ -1,0 +1,12 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+# https://firebase.google.com/docs/app-hosting/configure
+
+runConfig:
+  # Increase this value if you'd like to automatically spin up
+  # more instances in response to increased traffic.
+  maxInstances: 1
+
+# Specifies the build process for your backend.
+build:
+  # Specifies the command to run to build your backend.
+  run: npm run build
