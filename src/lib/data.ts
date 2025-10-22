@@ -149,6 +149,7 @@ export type Counselor = {
   availability: string | Record<string, string[]>;
   gender: 'Masculino' | 'Feminino' | 'Outro';
   role?: 'Pastor' | 'Conselheiro';
+  church_id?: string;
 };
 
 export const counselors: Counselor[] = [];
@@ -176,6 +177,7 @@ export type CounselingAppointment = {
   status: 'Marcado' | 'Concluído' | 'Cancelado' | 'Pendente' | 'Em Aconselhamento' | 'Na Fila';
   meetings: CounselingMeeting[];
   form_data?: Record<string, any>;
+  requestingUserGender?: string;
 };
 
 export const counselingAppointments: CounselingAppointment[] = [];
