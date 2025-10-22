@@ -562,7 +562,7 @@ export default function CounselingDetailsPage() {
         return baseTimes.map((time: string) => ({
             time,
             isBooked: bookedTimes.includes(time)
-        })).sort((a,b) => a.time.localeCompare(b.time));
+        })).sort((a: { time: string }, b: { time: string }) => a.time.localeCompare(b.time));
 
     }, [newSelectedDate, existingAppointments, counselorAvailability]);
 
@@ -577,7 +577,7 @@ export default function CounselingDetailsPage() {
     const updatedActivities = addActivity('rescheduled', `Atendimento reagendado para ${format(newDateTime, "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })}.`);
     
     const updatedFormData = { 
-      ...appointment.form_data, 
+      ...(appointment.form_data || {}), 
       activities: updatedActivities,
       date: newDateTime.toISOString(),
     };
@@ -596,14 +596,15 @@ export default function CounselingDetailsPage() {
 
       // Send notification emails
       try {
-        if (appointment.form_data.member_email && isValidEmail(appointment.form_data.member_email)) {
+        const fd = appointment.form_data || {};
+        if (fd.member_email && isValidEmail(fd.member_email)) {
           await sendEmail({
-            to: appointment.form_data.member_email,
+            to: fd.member_email,
             subject: 'Seu atendimento foi reagendado',
             body: `<p>Olá, ${appointment.memberName}.</p><p>Seu atendimento pastoral foi reagendado para <strong>${format(newDateTime, "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })}</strong>.</p>`,
           });
         } else {
-          console.warn(`Skipping email to invalid member address: ${appointment.form_data.member_email}`);
+          console.warn(`Skipping email to invalid member address: ${fd.member_email}`);
         }
         if (appointment.counselorEmail && isValidEmail(appointment.counselorEmail)) {
           await sendEmail({
@@ -638,7 +639,7 @@ export default function CounselingDetailsPage() {
     try {
         const updatedActivities = addActivity('canceled', `Atendimento cancelado pelo motivo: "${cancelReason}".`);
         const updatedFormData = { 
-            ...appointment.form_data, 
+            ...(appointment.form_data || {}), 
             activities: updatedActivities,
             cancellation_reason: cancelReason,
         };
@@ -653,14 +654,15 @@ export default function CounselingDetailsPage() {
         const isValidEmail = (email: string) => email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
         try {
-            if (appointment.form_data.member_email && isValidEmail(appointment.form_data.member_email)) {
+            const fd = appointment.form_data || {};
+            if (fd.member_email && isValidEmail(fd.member_email)) {
                  await sendEmail({
-                    to: appointment.form_data.member_email,
+                    to: fd.member_email,
                     subject: 'Seu atendimento pastoral foi cancelado',
                     body: `<p>Olá, ${appointment.memberName}.</p><p>Informamos que seu atendimento pastoral foi cancelado.</p><p><strong>Motivo:</strong> ${cancelReason}</p><p>Se precisar, você pode solicitar um novo agendamento na plataforma.</p>`,
                 });
             } else {
-                console.warn(`Skipping cancellation email to invalid member address: ${appointment.form_data.member_email}`);
+                console.warn(`Skipping cancellation email to invalid member address: ${fd.member_email}`);
             }
             
             if (appointment.counselorEmail && isValidEmail(appointment.counselorEmail)) {
@@ -728,7 +730,7 @@ export default function CounselingDetailsPage() {
           const updatedActivities = addActivity('transferred', `Atendimento transferido de ${oldCounselorName} para ${newCounselor.name}. Motivo: "${transferReason}"`);
           
           const updatedFormData = { 
-              ...appointment.form_data, 
+              ...(appointment.form_data || {}), 
               activities: updatedActivities,
               counselor_id: newCounselor.id,
               counselor_name: newCounselor.name,

@@ -84,7 +84,7 @@ export function AppointmentsByAgeChart({ selectedMonth, churchId }: Appointments
       const formattedData = Object.entries(ageDemographics).map(([key, value]) => ({
         group: key,
         appointments: value,
-        fill: chartConfig[key as keyof typeof chartConfig]?.color || "hsl(var(--muted))",
+        fill: (chartConfig as any)[key as any]?.color || "hsl(var(--muted))",
       })).filter(item => item.appointments > 0);
 
       setData(formattedData);

@@ -139,7 +139,7 @@ function RegisterMemberForm() {
             if (groupsError) {
                 console.error("Error fetching small groups", groupsError);
             } else {
-                setSmallGroups(groupsData || []);
+                setSmallGroups((groupsData || []).map((g: any) => ({ id: g.id, name: g.name, leader_id: '', member_ids: [], location: '', image_url: '' })));
             }
             setPageLoading(false);
         };

@@ -26,7 +26,7 @@ import { differenceInYears } from 'date-fns';
 type VolunteerApplication = {
     id: string;
     name: string;
-    status: 'Pendente' | 'Em Treinamento' | 'Em Validação' | 'Aprovado' | 'Aguardando regularização';
+    status: 'Pendente' | 'Em Treinamento' | 'Em Validação' | 'Aprovado' | 'Aguardando regularização' | 'Aguardando Documentos' | 'Com Retorno' | 'Alocado' | 'Aguardando Aprovação do Líder';
     created_at: string;
     form_data?: any;
 };

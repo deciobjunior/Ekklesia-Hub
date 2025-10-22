@@ -459,7 +459,7 @@ export default function AcolhimentoDetailsPage() {
     if (hasGrowthGroupInterest && !activities.some(a => a.action === 'sent_to_small_group')) {
         activities.push({
             id: 'auto-sg-activity',
-            timestamp: data.created_at,
+            timestamp: data?.created_at || new Date().toISOString(),
             user: 'Sistema',
             action: 'sent_to_small_group',
             details: 'Enviado automaticamente para a Central de Pequenos Grupos'
@@ -729,7 +729,7 @@ export default function AcolhimentoDetailsPage() {
                                                     <div className="pl-11 mt-2 text-xs text-muted-foreground">
                                                         <p className="font-semibold text-foreground mb-1">Tópicos de interesse:</p>
                                                         <div className="flex flex-wrap gap-1">
-                                                            {counselingTopicsText.split(', ').map(topic => (
+                                                            {counselingTopicsText.split(', ').map((topic: string) => (
                                                                 <Badge key={topic} variant="secondary" className="font-normal">{topic}</Badge>
                                                             ))}
                                                         </div>

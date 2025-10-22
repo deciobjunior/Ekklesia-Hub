@@ -124,8 +124,8 @@ export default function WaitingListPage() {
         }
 
         const channel = supabase.channel('waiting-list-changes')
-            .on('postgres_changes', { event: '*', schema: 'public', table: 'pending_registrations', filter: `church_id=eq.${churchId}` }, payload => {
-                if(payload.new.status === 'Na Fila' || payload.old.status === 'Na Fila') {
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'pending_registrations', filter: `church_id=eq.${churchId}` }, (payload: any) => {
+                if(payload?.new?.status === 'Na Fila' || payload?.old?.status === 'Na Fila') {
                     fetchWaitingList();
                 }
             })
