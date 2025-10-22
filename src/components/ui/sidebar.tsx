@@ -109,7 +109,7 @@ function SidebarTrigger({
 function SidebarDesktop({
   className,
   ...props
-}: React.HTMLAttributes<"aside">) {
+}: React.HTMLAttributes<HTMLElement>) {
   const { isOpen } = useSidebar()
   return (
     <aside
@@ -124,7 +124,7 @@ function SidebarDesktop({
   )
 }
 
-function SidebarBody({ className, ...props }: React.HTMLAttributes<"div">) {
+function SidebarBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const { isOpen } = useSidebar()
   return (
     <div
@@ -145,14 +145,14 @@ function SidebarBody({ className, ...props }: React.HTMLAttributes<"div">) {
 function SidebarHeader({
   className,
   ...props
-}: React.HTMLAttributes<"div">) {
+}: React.HTMLAttributes<HTMLDivElement>) {
   return <div className={cn("px-1", className)} {...props} />
 }
 
 function SidebarHeaderTitle({
   className,
   ...props
-}: React.HTMLAttributes<"h2">) {
+}: React.HTMLAttributes<HTMLHeadingElement>) {
   const { isOpen } = useSidebar()
   return (
     <h2
@@ -166,7 +166,7 @@ function SidebarHeaderTitle({
   )
 }
 
-function SidebarNav({ className, ...props }: React.HTMLAttributes<"nav">) {
+function SidebarNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
     <nav
       className={cn("flex flex-1 flex-col justify-center", className)}
@@ -178,14 +178,14 @@ function SidebarNav({ className, ...props }: React.HTMLAttributes<"nav">) {
 function SidebarNavGroup({
   className,
   ...props
-}: React.HTMLAttributes<"div">) {
+}: React.HTMLAttributes<HTMLDivElement>) {
   return <div className={cn("px-1", className)} {...props} />
 }
 
 function SidebarGroupLabel({
   className,
   ...props
-}: React.HTMLAttributes<"h2">) {
+}: React.HTMLAttributes<HTMLHeadingElement>) {
   const { isOpen } = useSidebar()
   return (
     <h2
@@ -240,7 +240,7 @@ function SidebarNavLink({
 function SidebarFooter({
   className,
   ...props
-}: React.HTMLAttributes<"div">) {
+}: React.HTMLAttributes<HTMLDivElement>) {
   const { isOpen, isMobile, onToggle } = useSidebar()
 
   if (isMobile) return null
