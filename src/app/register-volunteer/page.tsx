@@ -180,13 +180,13 @@ function RegisterVolunteerForm() {
                  router.push('/login');
             } else {
                 // Logic for new public registration
-                 const { error: pendingRegError } = await supabase
+                const { error: pendingRegError } = await supabase
                     .from('pending_registrations')
                     .insert({
-                        id: finalFormData.id,
+                        id: (finalFormData as any).id,
                         church_id: currentChurchId,
-                        name: finalFormData.name,
-                        email: finalFormData.email,
+                        name: (finalFormData as any).name,
+                        email: (finalFormData as any).email,
                         role: 'Voluntário',
                         status: 'Pendente',
                         form_data: finalFormData,
@@ -198,14 +198,14 @@ function RegisterVolunteerForm() {
                 const { error: memberInsertError } = await supabase
                     .from('members')
                     .insert({
-                        id: finalFormData.id,
+                        id: (finalFormData as any).id,
                         church_id: currentChurchId,
-                        name: finalFormData.name,
-                        email: finalFormData.email,
-                        phone: finalFormData.phone,
-                        birthdate: finalFormData.birthdate,
-                        gender: finalFormData.gender,
-                        marital_status: finalFormData.maritalStatus,
+                        name: (finalFormData as any).name,
+                        email: (finalFormData as any).email,
+                        phone: (finalFormData as any).phone,
+                        birthdate: (finalFormData as any).birthdate,
+                        gender: (finalFormData as any).gender,
+                        marital_status: (finalFormData as any).maritalStatus,
                         role: 'Voluntário', // Initial role
                         status: 'Pendente', // Status of the person, not the application
                     });

@@ -91,7 +91,7 @@ export function EditMemberDialog({ open, onOpenChange, member, onSave, defaultTa
       };
       setFormData(mergedFormData);
       
-      const avData = mergedFormData.form_data?.counselor_availability || mergedFormData.form_data?.availability || mergedFormData.availability;
+      const avData = (mergedFormData.form_data as any)?.counselor_availability || (mergedFormData.form_data as any)?.availability || (mergedFormData as any).availability;
       let initialAvailability = {};
 
       if (typeof avData === 'string' && avData.trim().startsWith('{')) {

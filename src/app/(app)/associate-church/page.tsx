@@ -28,7 +28,7 @@ export default async function AssociateChurchPage() {
         // For now, we'll let the client component handle the empty state.
     }
     
-    const churches: ChurchInfo[] = (data || []).map(church => ({
+    const churches: ChurchInfo[] = (data || []).map((church: any) => ({
         id: church.id,
         name: church.name,
         senior_pastor_name: church.senior_pastor_name || 'Não informado',

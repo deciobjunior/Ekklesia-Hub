@@ -73,7 +73,7 @@ export function AddMemberDialog({ onMemberAdded }: AddMemberDialogProps) {
                 if (groupsError) {
                     console.error("Error fetching small groups", groupsError);
                 } else {
-                    setSmallGroups(groupsData || []);
+                    setSmallGroups((groupsData || []).map((g: any) => ({ ...g, leader_id: null, member_ids: [], location: '', image_url: '' })));
                 }
             }
         }

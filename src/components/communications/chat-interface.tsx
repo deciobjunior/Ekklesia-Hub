@@ -65,7 +65,7 @@ export function ChatInterface({
       if (!churchId) return;
       setLoadingMembers(true);
       const members = await getContacts('all', churchId);
-      setAllMembers(members);
+      setAllMembers(members as any);
       setLoadingMembers(false);
     }, [churchId]);
 

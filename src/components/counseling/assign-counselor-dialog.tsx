@@ -127,7 +127,7 @@ export function AssignCounselorDialog({ open, onOpenChange, request, churchId, c
         return baseTimes.map((time: string) => ({
             time,
             isBooked: bookedTimes.includes(time)
-        })).sort((a,b) => a.time.localeCompare(b.time));
+        })).sort((a: { time: string }, b: { time: string }) => a.time.localeCompare(b.time));
     }, [selectedDate, appointments, counselorAvailability]);
 
     const handleAssignAppointment = async () => {
@@ -174,9 +174,9 @@ export function AssignCounselorDialog({ open, onOpenChange, request, churchId, c
         }
 
         try {
-            if (request.form_data.member_email) {
+            if ((request.form_data || {}).member_email) {
                  await sendEmail({
-                    to: request.form_data.member_email,
+                    to: (request.form_data || {}).member_email,
                     subject: `Seu agendamento foi confirmado - ${churchName}`,
                     body: `<p>Olá, ${request.memberName}!</h1><p>Boas notícias! Um conselheiro já está disponível e seu agendamento na igreja <strong>${churchName}</strong> foi confirmado.</p><p><strong>Conselheiro(a):</strong> ${selectedCounselor.name}</p><p><strong>Data:</strong> ${format(finalDateTime, "PPP", { locale: ptBR })}</p><p><strong>Hora:</strong> ${format(finalDateTime, "p", { locale: ptBR })}</p><p>Fique na paz!</p>`
                 });
@@ -247,7 +247,7 @@ export function AssignCounselorDialog({ open, onOpenChange, request, churchId, c
                                      <div className="space-y-2">
                                         <Label>Horários disponíveis</Label>
                                         <div className="grid grid-cols-3 gap-2">
-                                            {availableTimes.length > 0 ? availableTimes.map(item => (
+                                            {availableTimes.length > 0 ? availableTimes.map((item: { time: string; isBooked: boolean }) => (
                                                 <Button 
                                                     key={item.time}
                                                     variant={selectedTime === item.time ? 'default' : 'outline'}

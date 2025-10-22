@@ -952,7 +952,7 @@ export default function CounselingDetailsPage() {
                     <p className="font-bold text-lg">{appointment.memberName}</p>
                     <div className="flex items-center gap-2 text-muted-foreground">
                         <Mail className="h-4 w-4" />
-                        <span className="truncate" title={appointment.form_data.member_email || 'Não informado'}>{appointment.form_data.member_email || 'Não informado'}</span>
+                        <span className="truncate" title={(appointment.form_data || {}).member_email || 'Não informado'}>{(appointment.form_data || {}).member_email || 'Não informado'}</span>
                     </div>
                     <div className="flex items-center gap-4">
                         {appointment.memberPhone && appointment.memberPhone !== 'Não informado' && (
@@ -1163,7 +1163,7 @@ export default function CounselingDetailsPage() {
                 <div className="space-y-2">
                     <Label>Horários disponíveis para {isClient ? newSelectedDate.toLocaleDateString('pt-BR') : '...'}</Label>
                         <div className="grid grid-cols-3 gap-2">
-                        {availableTimes.length > 0 ? availableTimes.map(item => (
+                        {availableTimes.length > 0 ? availableTimes.map((item: { time: string; isBooked: boolean }) => (
                             <Button 
                                 key={item.time}
                                 variant={newSelectedTime === item.time ? 'default' : 'outline'}

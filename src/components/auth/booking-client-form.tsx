@@ -166,7 +166,7 @@ export function BookingClientForm({ churchId }: { churchId: string; }) {
         return baseTimes.map((time: string) => ({
             time,
             isBooked: bookedTimes.includes(time)
-        })).sort((a,b) => a.time.localeCompare(b.time));
+        })).sort((a: { time: string }, b: { time: string }) => a.time.localeCompare(b.time));
 
     }, [selectedDate, appointments, counselorAvailability]);
     
@@ -531,9 +531,9 @@ export function BookingClientForm({ churchId }: { churchId: string; }) {
                                     </div>
                                     {selectedDate && (
                                         <div className="space-y-2">
-                                            <Label>Horários disponíveis para {isClient ? selectedDate.toLocaleDateString('pt-BR') : '...'}</Label>
+                                             <Label>Horários disponíveis para {isClient ? selectedDate.toLocaleDateString('pt-BR') : '...'}</Label>
                                              <div className="grid grid-cols-3 gap-2">
-                                                {availableTimes.length > 0 ? availableTimes.map(item => (
+                                                {availableTimes.length > 0 ? availableTimes.map((item: { time: string; isBooked: boolean }) => (
                                                     <Button 
                                                         key={item.time}
                                                         variant={selectedTime === item.time ? 'default' : 'outline'}

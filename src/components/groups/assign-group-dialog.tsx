@@ -114,7 +114,7 @@ export function AssignGroupDialog({ open, onOpenChange, interestedPerson, onAssi
             // Prepare updates
             const newMemberIds = [...new Set([...(group.member_ids || []), interestedPerson.id])];
             const newInterests = (newBeginning.interests || []).filter((interest: any) => interest.key !== 'growth_group');
-            const leaderName = group.leader?.name || 'Não definido';
+            const leaderName = (group as any).leader?.name || 'Não definido';
 
             // Run updates in parallel
             const [updateGroupRes, updateBeginningRes] = await Promise.all([

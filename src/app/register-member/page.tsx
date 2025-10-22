@@ -240,17 +240,17 @@ function RegisterMemberForm() {
                 ...uploadedFileUrls,
             };
 
-            const memberProfile = {
+            const memberProfile: any = {
                 id: newMemberId,
                 church_id: currentChurchId,
-                name: submissionData.name,
-                email: submissionData.email,
-                phone: submissionData.phone,
-                birthdate: submissionData.birthdate,
-                gender: submissionData.gender,
-                marital_status: submissionData.marital_status,
-                profession: submissionData.profession,
-                address: submissionData.address,
+                name: (submissionData as any).name,
+                email: (submissionData as any).email,
+                phone: (submissionData as any).phone,
+                birthdate: (submissionData as any).birthdate,
+                gender: (submissionData as any).gender,
+                marital_status: (submissionData as any).marital_status,
+                profession: (submissionData as any).profession,
+                address: (submissionData as any).address,
                 role: 'Membro',
                 status: 'Ativo',
             };

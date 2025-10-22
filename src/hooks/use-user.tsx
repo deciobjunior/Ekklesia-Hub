@@ -195,8 +195,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             const [ pastorLeaderRes, counselorRes, volunteerRes, memberRes ] = await Promise.all(profilePromises);
 
             if (pastorLeaderRes.data) {
-                finalRole = pastorLeaderRes.data.role;
-                finalChurchId = pastorLeaderRes.data.church_id;
+                finalRole = (pastorLeaderRes.data as any).role;
+                finalChurchId = (pastorLeaderRes.data as any).church_id;
                 // @ts-ignore
                 finalChurchName = pastorLeaderRes.data.churches?.name || null;
             } else if (counselorRes.data) {
@@ -205,8 +205,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
                 // @ts-ignore
                 finalChurchName = counselorRes.data.churches?.name || null;
             } else if (volunteerRes.data) {
-                finalRole = volunteerRes.data.role || 'Voluntário';
-                finalChurchId = volunteerRes.data.church_id;
+                finalRole = (volunteerRes.data as any).role || 'Voluntário';
+                finalChurchId = (volunteerRes.data as any).church_id;
                 // @ts-ignore
                 finalChurchName = volunteerRes.data.churches?.name || null;
             } else if (memberRes.data) {

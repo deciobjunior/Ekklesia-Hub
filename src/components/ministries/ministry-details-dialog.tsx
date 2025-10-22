@@ -190,7 +190,7 @@ export function MinistryDetailsDialog({ ministry, open, onOpenChange, onUpdate }
         // This function will be called from EditMemberDialog
         // A real implementation would handle the specific update logic here
         const { data, error } = await supabase.from('volunteers').update({
-            availability: updatedMember.form_data.availability
+            availability: (updatedMember.form_data || {}).availability
         }).eq('id', updatedMember.id);
         
         if(error) {

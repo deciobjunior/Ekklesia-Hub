@@ -91,13 +91,13 @@ export function MyAppointmentsDemographicsChart({ counselorId, selectedMonth }: 
       setAgeData(Object.entries(ageDemographics).map(([key, value]) => ({
         group: key,
         appointments: value,
-        fill: chartConfig[key as keyof typeof chartConfig]?.color || "hsl(var(--muted))",
+        fill: (chartConfig as any)[key]?.color || "hsl(var(--muted))",
       })).filter(item => item.appointments > 0));
 
       setGenderData(Object.entries(genderDemographics).map(([key, value]) => ({
         group: key,
         appointments: value,
-        fill: chartConfig[key as keyof typeof chartConfig]?.color || "hsl(var(--muted))",
+        fill: (chartConfig as any)[key]?.color || "hsl(var(--muted))",
       })).filter(item => item.appointments > 0));
 
       setLoading(false);
