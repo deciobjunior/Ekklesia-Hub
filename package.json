@@ -50,6 +50,7 @@
     "genkit": "^1.14.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
+    "lovable-tagger": "^1.1.11",
     "lucide-react": "^0.475.0",
     "next": "15.3.3",
     "next-themes": "^0.3.0",

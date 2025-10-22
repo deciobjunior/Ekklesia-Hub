@@ -18,7 +18,7 @@ export default async function AssociateChurchPage() {
     
     // We create a server-side Supabase client to bypass RLS for this specific query.
     // This is safe because we're only reading public information (church names).
-    const supabase = createClient();
+    const supabase = await createClient();
 
     const { data, error } = await supabase.from('churches').select('id, name, senior_pastor_name');
 

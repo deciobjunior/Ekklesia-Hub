@@ -19,7 +19,7 @@ const ChurchMetricsSchema = z.object({
 });
 
 async function fetchChurchIdForUser(userId: string) {
-    const supabase = createClient();
+    const supabase = await createClient();
     if (!userId) throw new Error("ID do usuário não fornecido.");
 
     const { data: church } = await supabase
@@ -40,7 +40,7 @@ export const getChurchMetrics = ai.defineTool(
         outputSchema: ChurchMetricsSchema,
     },
     async (input) => {
-        const supabase = createClient();
+        const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) {
             throw new Error("Usuário não autenticado.");
