@@ -8,7 +8,7 @@ import { Logo } from '@/components/logo';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Checkbox } from '@/components/ui/checkbox';
-import { createClient } from '@/lib/supabaseClient';
+import { createClient } from '@/lib/supabase/client';
 import { Loader2 } from 'lucide-react';
 import type { Ministry } from '@/lib/data';
 

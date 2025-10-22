@@ -8,7 +8,7 @@ import { Logo } from '@/components/logo';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabaseClient';
+import { createClient } from '@/lib/supabase/client';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 

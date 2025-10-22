@@ -12,7 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription as 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { createClient } from '@/lib/supabaseClient';
+import { createClient } from '@/lib/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
 type Meeting = {

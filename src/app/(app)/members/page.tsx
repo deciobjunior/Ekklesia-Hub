@@ -391,6 +391,12 @@ const handleSaveMember = async (updatedMember: Member) => {
     setSaving(true);
     const { form_data, id: memberId, role: newRole } = updatedMember;
     
+    if (!form_data) {
+        toast({ title: "Erro ao salvar", description: "Dados do formulário não encontrados", variant: "destructive" });
+        setSaving(false);
+        return;
+    }
+    
     try {
         // 1. Update the central 'members' table with all data
         const { error: memberUpdateError } = await supabase

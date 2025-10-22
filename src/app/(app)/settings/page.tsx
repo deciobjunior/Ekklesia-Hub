@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createClient } from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, User as UserIcon, Building, Braces, Palette, Bell, Lock, HeartHandshake } from "lucide-react";

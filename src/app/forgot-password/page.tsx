@@ -8,7 +8,7 @@ import { Logo } from '@/components/logo';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { useState } from 'react';
-import { createClient } from '@/lib/supabaseClient';
+import { createClient } from '@/lib/supabase/client';
 import { Loader2 } from 'lucide-react';
 import { sendEmail } from '@/ai/flows/send-email-flow';
 

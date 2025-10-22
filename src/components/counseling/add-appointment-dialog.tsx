@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PlusCircle, ArrowLeft, Loader2 } from "lucide-react";
 import { useToast } from '@/hooks/use-toast';
-import { createClient } from '@/lib/supabaseClient';
+import { createClient } from '@/lib/supabase/client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Counselor, counselingTopics } from '@/lib/data';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';

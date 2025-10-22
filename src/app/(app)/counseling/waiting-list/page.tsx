@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Counselor, CounselingAppointment } from "@/lib/data";
 import { Clock, User, Tag, Loader2, CheckCircle, BadgeHelp, MessageSquare, Handshake, Users as UsersIcon, Cake, Briefcase, UserCog, ArrowLeft } from "lucide-react";
 import { useToast } from '@/hooks/use-toast';
-import { createClient } from '@/lib/supabaseClient';
+import { createClient } from '@/lib/supabase/client';
 import {
   Tooltip,
   TooltipContent,

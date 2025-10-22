@@ -20,6 +20,7 @@ interface UserContextType {
     churchId: string | null;
     churchName: string | null;
     authLoading: boolean;
+    loading: boolean; // Alias for authLoading for backward compatibility
     pendingNotifications: number;
     pendingNotificationItems: PendingNotification[];
     isCounselorProfileIncomplete: boolean;
@@ -33,6 +34,7 @@ const UserContext = createContext<UserContextType>({
     churchId: null,
     churchName: null,
     authLoading: true,
+    loading: true,
     pendingNotifications: 0,
     pendingNotificationItems: [],
     isCounselorProfileIncomplete: false,
@@ -276,7 +278,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }, [authLoading, user, churchId, router, pathname]);
 
-    const value: UserContextType = { user, userRole, churchId, churchName, authLoading, pendingNotifications, pendingNotificationItems, isCounselorProfileIncomplete, setIsCounselorProfileIncomplete, refreshUserData };
+    const value: UserContextType = { user, userRole, churchId, churchName, authLoading, loading: authLoading, pendingNotifications, pendingNotificationItems, isCounselorProfileIncomplete, setIsCounselorProfileIncomplete, refreshUserData };
 
     if (authLoading) {
         return <div className="flex items-center justify-center h-screen"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>;
