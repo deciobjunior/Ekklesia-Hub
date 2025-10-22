@@ -20,11 +20,10 @@ const hubIaFlow = ai.defineFlow(
     inputSchema: HubIaInputSchema,
     outputSchema: HubIaOutputSchema,
   },
-  async ({ history, prompt }) => {
+  async ({ prompt }) => {
 
     const { text } = await ai.generate({
       model: 'googleai/gemini-2.0-flash',
-      history,
       prompt: `
         Você é o "Ekklesia Hub IA", um assistente de suporte especializado na plataforma de gestão de igrejas Ekklesia Hub.
         Sua função é ajudar os usuários a entender e utilizar a plataforma, tirar dúvidas sobre funcionalidades e auxiliar na resolução de problemas.
