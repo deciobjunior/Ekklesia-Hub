@@ -230,51 +230,68 @@ export type Database = {
           },
         ]
       }
-      inbound_messages: {
+      financial_categories: {
         Row: {
           church_id: string | null
           created_at: string | null
           id: string
-          is_archived: boolean | null
-          is_read: boolean | null
-          media_url: string | null
-          member_id: string | null
-          message: string
-          message_type: string | null
-          phone: string
-          sender_name: string | null
-          timestamp: string | null
-          z_api_data: Json | null
+          name: string
+          type: string
         }
         Insert: {
           church_id?: string | null
           created_at?: string | null
           id?: string
-          is_archived?: boolean | null
-          is_read?: boolean | null
-          media_url?: string | null
-          member_id?: string | null
-          message: string
-          message_type?: string | null
-          phone: string
-          sender_name?: string | null
-          timestamp?: string | null
-          z_api_data?: Json | null
+          name: string
+          type: string
         }
         Update: {
           church_id?: string | null
           created_at?: string | null
           id?: string
-          is_archived?: boolean | null
+          name?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "financial_categories_church_id_fkey"
+            columns: ["church_id"]
+            isOneToOne: false
+            referencedRelation: "churches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      inbound_messages: {
+        Row: {
+          church_id: string
+          contact_name: string | null
+          id: number
+          is_read: boolean | null
+          message: string | null
+          message_timestamp: string | null
+          phone: string
+          wa_message_id: string | null
+        }
+        Insert: {
+          church_id: string
+          contact_name?: string | null
+          id?: never
           is_read?: boolean | null
-          media_url?: string | null
-          member_id?: string | null
-          message?: string
-          message_type?: string | null
+          message?: string | null
+          message_timestamp?: string | null
+          phone: string
+          wa_message_id?: string | null
+        }
+        Update: {
+          church_id?: string
+          contact_name?: string | null
+          id?: never
+          is_read?: boolean | null
+          message?: string | null
+          message_timestamp?: string | null
           phone?: string
-          sender_name?: string | null
-          timestamp?: string | null
-          z_api_data?: Json | null
+          wa_message_id?: string | null
         }
         Relationships: [
           {
@@ -282,13 +299,6 @@ export type Database = {
             columns: ["church_id"]
             isOneToOne: false
             referencedRelation: "churches"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "inbound_messages_member_id_fkey"
-            columns: ["member_id"]
-            isOneToOne: false
-            referencedRelation: "members"
             referencedColumns: ["id"]
           },
         ]
@@ -384,40 +394,37 @@ export type Database = {
       }
       message_history: {
         Row: {
-          campaign_id: string
+          campaign_id: string | null
           church_id: string
-          group_id: string | null
-          id: string
-          member_name: string
-          member_phone: string | null
-          message_body: string
-          sent_at: string | null
+          created_at: string | null
+          id: number
+          member_name: string | null
+          member_phone: string
+          message_body: string | null
           sent_by: string | null
-          status: string
+          status: string | null
         }
         Insert: {
-          campaign_id: string
+          campaign_id?: string | null
           church_id: string
-          group_id?: string | null
-          id?: string
-          member_name: string
-          member_phone?: string | null
-          message_body: string
-          sent_at?: string | null
+          created_at?: string | null
+          id?: never
+          member_name?: string | null
+          member_phone: string
+          message_body?: string | null
           sent_by?: string | null
-          status: string
+          status?: string | null
         }
         Update: {
-          campaign_id?: string
+          campaign_id?: string | null
           church_id?: string
-          group_id?: string | null
-          id?: string
-          member_name?: string
-          member_phone?: string | null
-          message_body?: string
-          sent_at?: string | null
+          created_at?: string | null
+          id?: never
+          member_name?: string | null
+          member_phone?: string
+          message_body?: string | null
           sent_by?: string | null
-          status?: string
+          status?: string | null
         }
         Relationships: [
           {
@@ -815,41 +822,23 @@ export type Database = {
       }
     }
     Views: {
-      vw_conversation_list: {
-        Row: {
-          church_id: string | null
-          contact_name: string | null
-          last_message: string | null
-          last_message_at: string | null
-          last_message_direction: string | null
-          phone: string | null
-          unread_count: number | null
-        }
-        Relationships: []
-      }
-      vw_conversations: {
-        Row: {
-          campaign_id: string | null
-          church_id: string | null
-          contact_name: string | null
-          direction: string | null
-          id: string | null
-          is_read: boolean | null
-          message: string | null
-          message_type: string | null
-          phone: string | null
-          sent_at: string | null
-          status: string | null
-          timestamp: string | null
-          user_id: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       assign_role: {
         Args: { p_member_id: string; p_role_id: string }
         Returns: undefined
+      }
+      get_conversation_messages: {
+        Args: { p_church_id: string; p_phone: string }
+        Returns: {
+          contact_name: string
+          direction: string
+          id: string
+          message: string
+          message_timestamp: string
+          phone: string
+        }[]
       }
       get_paginated_members: {
         Args: {
