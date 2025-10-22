@@ -40,6 +40,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { MembersTable } from '@/components/members/members-table';
 import { useToast } from '@/hooks/use-toast';
@@ -504,7 +505,7 @@ const handleSaveMember = async (updatedMember: Member) => {
                         <AlertDialogHeader>
                         <AlertDialogTitle>Você tem certeza?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            Esta ação não pode ser desfeita. Isso irá deletar permanentemente os ${"{"}selectedMemberIds.length} registros selecionados.
+                            Esta ação não pode ser desfeita. Isso irá deletar permanentemente os {selectedMemberIds.length} registros selecionados.
                         </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
